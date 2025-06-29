@@ -6,3 +6,9 @@ plugins:
 AllCops:
   TargetRubyVersion: 3.1
   NewCops: enable
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
