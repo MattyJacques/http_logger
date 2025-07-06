@@ -4,9 +4,9 @@ require_relative 'lib/http_logger/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'http_logger'
-  spec.version = HttpLogger::VERSION
+  spec.version = HTTPLogger::VERSION
   spec.authors = ['Matthew Jacques']
-  spec.email = ['matthew.jacques@sage.com']
+  spec.email = ['matty.jacques@proton.me']
 
   spec.summary = 'TODO: Write a short summary, because RubyGems requires one.'
   spec.description = 'TODO: Write a longer description or delete this line.'
