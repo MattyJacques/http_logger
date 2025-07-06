@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
+require_relative 'http_logger/http_logger'
 require_relative 'http_logger/version'
-
-module HttpLogger
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require_relative 'http_logger/patches/net/http'
