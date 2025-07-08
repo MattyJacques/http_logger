@@ -14,7 +14,7 @@ module Net
       original_connect
 
       # Hook after connect
-      puts "[HTTPLogger] Connected to #{address}:#{port}" if HTTPLogger.config.log_connection
+      HTTPLogger.log_connection(address, port)
     end
 
     def request(req, body = nil, &)

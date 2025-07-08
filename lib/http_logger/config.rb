@@ -16,12 +16,12 @@ module HTTPLogger
   # @attr_accessor [Boolean] log_response Whether to log HTTP responses.
   # @attr_accessor [Boolean] log_connection Whether to log connection details.
   class Config
-    attr_accessor :log_request, :log_response, :log_connection
+    attr_accessor :log_connection, :log_request, :log_response, :log_headers
 
     def initialize
+      @log_connection = true
       @log_request = true
       @log_response = true
-      @log_connection = true
     end
   end
 end
