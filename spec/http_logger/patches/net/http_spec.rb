@@ -20,7 +20,7 @@ RSpec.describe Net::HTTP do
     end
 
     it 'logs connection details' do
-      expect($stdout).to receive(:puts).with("[HTTPLogger] Connected to #{http.address}:#{http.port}")
+      expect(HTTPLogger).to receive(:log_connection).with('example.com', 80)
 
       http.start
     end

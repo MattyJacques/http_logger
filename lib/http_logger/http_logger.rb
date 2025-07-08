@@ -18,6 +18,10 @@ module HTTPLogger
       log_response(params[:response]) if config.log_response
     end
 
+    def log_connection(host, port)
+      send_log("Connected to #{host}:#{port}") if config.log_connection
+    end
+
     private
 
     def log_request(method, url, request)
@@ -28,7 +32,7 @@ module HTTPLogger
 
     def log_response(response)
       send_log("Response: #{response[:code]}")
-      send_log("Headers: #{response[:headers].inspect}")
+      send_log("Headers: #{response[:headers].inspect}") if config.log_headers
       send_log("Body: #{response[:body].inspect}") if response[:body]
     end
 
