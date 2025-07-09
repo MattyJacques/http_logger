@@ -22,6 +22,7 @@ module HTTPLogger
       @log_connection = true
       @log_request = true
       @log_response = true
+      @log_headers = false
     end
   end
 end

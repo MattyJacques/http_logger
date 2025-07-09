@@ -23,6 +23,7 @@ RSpec.describe HTTPLogger do
         config.log_request = true
         config.log_response = true
         config.log_connection = true
+        config.log_headers = false
       end
     end
 
@@ -35,6 +36,7 @@ RSpec.describe HTTPLogger do
         config.log_request = false
         config.log_response = false
         config.log_connection = false
+        config.log_headers = true
       end
 
       config = described_class.config
@@ -42,6 +44,7 @@ RSpec.describe HTTPLogger do
       expect(config.log_request).to be(false)
       expect(config.log_response).to be(false)
       expect(config.log_connection).to be(false)
+      expect(config.log_headers).to be(true)
     end
   end
 
@@ -75,6 +78,20 @@ RSpec.describe HTTPLogger do
       described_class.config.log_response = false
       expect { described_class.log(params) }.not_to output(/Response:/).to_stdout
       described_class.config.log_response = true
+    end
+
+    it 'does not log connection when log_connection is false' do
+      described_class.config.log_connection = false
+      expect { described_class.log(params) }.not_to output(/Connection:/).to_stdout
+      described_class.config.log_connection = true
+    end
+
+    it 'logs headers when log_headers is true' do
+      described_class.config.log_headers = true
+      output = capture_stdout { described_class.log(params) }
+      expect(output).to include('Content-Type')
+      expect(output).to include('Content-Length')
+      described_class.config.log_headers = false
     end
   end
 end

@@ -26,14 +26,25 @@ module HTTPLogger
 
     def log_request(method, url, request)
       send_log("Request: #{method} #{url}")
-      send_log("Headers: #{request[:headers].inspect}")
+      log_headers(request[:headers])
       send_log("Body: #{request[:body].inspect}") if request[:body]
     end
 
     def log_response(response)
       send_log("Response: #{response[:code]}")
-      send_log("Headers: #{response[:headers].inspect}") if config.log_headers
+      log_headers(response[:headers])
       send_log("Body: #{response[:body].inspect}") if response[:body]
+    end
+
+    def log_headers(headers)
+      return unless config.log_headers
+
+      send_log("Headers: #{headers.inspect}")
+    end
+
+    def log_body(body)
+      return unless body
+
     end
 
     def send_log(message)
